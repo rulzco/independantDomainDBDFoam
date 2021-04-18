@@ -25,7 +25,10 @@ Application
     icoFoam
 
 Description
-    Transient solver for incompressible, laminar flow of Newtonian fluids.
+    Transient solver for incompressible, laminar flow of Newtonian fluids,
+	coupled with the DBD force from the Suzen model. The electric potential
+	and electric field are solved with suzenPotential, then the fields are
+	mapped as initial conditions to the case in which suzenPiso is exectued.
 
 \*---------------------------------------------------------------------------*/
 
@@ -47,6 +50,23 @@ int main(int argc, char *argv[])
     #include "initContinuityErrs.H"
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+	
+	//Info<< "\nCalculating Electric Potential\n" << endl;
+    
+    //solve ( fvm::laplacian(epsR,ElPot) ); /Laplace eq. for the electric potential solved with suzenPotential
+	
+	    /*volVectorField Efield // Calculated with suzenPotential
+    (
+     	IOobject
+     	(
+			"Efield",
+			runTime.timeName(),
+			mesh,
+			IOobject::NO_READ,
+			IOobject::AUTO_WRITE
+        ),
+        - fvc::grad(ElPot)
+    );	*/	   
 	
 	Info<< "\nCalculating Charge Density\n" << endl;
     solve ( fvm::laplacian(epsR,rhoC) == fvm::Sp(1. / (lambda * lambda),rhoC) ); //Poisson eq. for the charge density
@@ -72,14 +92,6 @@ int main(int argc, char *argv[])
     rhoC.write();
 	Efield.write();
 	bForce.write();
-	
-	//# define omega 0.05
-
-
-	//const dimensionedVector mySource("mySource", dimensionSet(0,1,-2,0,0,0,0), 10*Foam::sin(runTime.value()*omega)*vector(1,0,0));
-
-	//volVectorField	&plasmaForce = bForce;
-	//volScalarField plasmaForce("plasmaForce", myVector & mesh.C()); 
 	
     while (runTime.loop())
     {
