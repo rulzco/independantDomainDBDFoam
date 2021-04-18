@@ -25,7 +25,8 @@ Application
     suzenPotential
 
 Description
-    Solves a Laplace equation for the electric potential of the DBD Suzen model
+    Solves a Laplace equation for the electric potential of the DBD Suzen model,
+	then solves the electric field from y -gradient(electric potential).
 
 \*---------------------------------------------------------------------------*/
 
