@@ -25,9 +25,10 @@ Application
     forceSuzen
 
 Description
-    Solves a Poisson equation for the charge density, the solves the body force for the
-	DBD Suzen model, suzenPotential should be used first to solve the electric potential,
-	then the potential muts be mapped to the case in which forceSuzen is executed.
+    Solves a Poisson equation for the charge density, then solves the body force for the
+	DBD Suzen model, suzenPotential should be used first to solve the electric potential 
+	and the electric field, which must be mapped as initial conditions to the case in 
+	which forceSuzen solver is executed.
 
 \*---------------------------------------------------------------------------*/
 
@@ -47,17 +48,16 @@ int main(int argc, char *argv[])
     //simpleControl simple(mesh);
 
     #include "createFields.H"
-
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
     //Info<< "\nCalculating Electric Potential\n" << endl;
     
-    //solve ( fvm::laplacian(epsR,ElPot) ); /Laplace eq. electric potential see suzenPotential
+    //solve ( fvm::laplacian(epsR,ElPot) ); /Laplace eq. for the electric potential solved with suzenPotential
 
     Info<< "\nCalculating Charge Density\n" << endl;
-    solve ( fvm::laplacian(epsR,rhoC) == fvm::Sp(1. / (lambda * lambda),rhoC) ); //Poisson eq. for charge density
+    solve ( fvm::laplacian(epsR,rhoC) == fvm::Sp(1. / (lambda * lambda),rhoC) ); //Poisson eq. for the charge density
 
-    volVectorField Efield
+    /*volVectorField Efield // Calculated with suzenPotential
     (
      	IOobject
      	(
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 			IOobject::AUTO_WRITE
         ),
         - fvc::grad(ElPot)
-    );		   
+    );	*/	   
 
     Info<< "\nCalculating time-independent force field\n" << endl;
 
@@ -90,31 +90,6 @@ int main(int argc, char *argv[])
     rhoC.write();
 	Efield.write();
 	bForce.write();
-    /*
-    while (simple.loop(runTime))
-    {
-        Info<< "Time = " << runTime.timeName() << nl << endl;
-
-       i while (simple.correctNonOrthogonal())
-        {
-            fvScalarMatrix TEqn
-            (
-                fvm::ddt(T) - fvm::laplacian(DT, T)
-             ==
-                fvOptions(T)
-            );
-
-            fvOptions.constrain(TEqn);
-            TEqn.solve();
-            fvOptions.correct(T);
-        }
-
-        #include "write.H"
-
-        Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
-            << "  ClockTime = " << runTime.elapsedClockTime() << " s"
-            << nl << endl;
-    }*/
 
     Info<< "End\n" << endl;
 

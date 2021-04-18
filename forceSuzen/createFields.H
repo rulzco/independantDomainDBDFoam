@@ -47,19 +47,24 @@ dimensionedScalar lambda
 );
 Info << "    lambda = " << lambda << endl;
 
+Info << "....Max electric potential, epMax" << endl;
 dimensionedScalar epMax
 (
      "epMax",
      dimensionSet(0, 0, 0, 0, 0, 0, 0),
      transportProperties.lookup("epMax")
 );
+Info << "    epMax = " << epMax << endl;
 
+Info << "....Max charge density, rhoCMax" << endl;
 dimensionedScalar rhoCMax
 (
      "rhoCMax",
      dimensionSet(0, 0, 0, 0, 0, 0, 0),
      transportProperties.lookup("rhoCMax")
  );
+Info << "    rhoCMax = " << rhoCMax << endl;
+
 
 Info<< "Reading field electric potential ElPot\n" << endl;
 volScalarField ElPot
@@ -75,6 +80,19 @@ volScalarField ElPot
     mesh
 );
 
+Info<< "Reading field electric field Efield\n" << endl;
+volVectorField Efield
+(
+    IOobject
+    (
+		"Efield",
+		runTime.timeName(),
+		mesh,
+		IOobject::MUST_READ,
+		IOobject::AUTO_WRITE
+    ),
+    mesh
+);
 
 Info<< "Reading field relative permitivity epsR\n" << endl;
 volScalarField epsR
@@ -104,30 +122,3 @@ volScalarField rhoC
       mesh
 );
 
-/*
-Info<< "Reading Debye length lambda\n" << endl;
-volScalarField lambda
-(
-      IOobject
-      (
-	"lambda",
-	runTime.timeName(),
-	mesh,
-	IOobject::READ_IF_PRESENT,
-	IOobject::NO_WRITE
-      ),
-      mesh,
-      dimensionedScalar("lambda", dimensionSet(0, 1, 0, 0, 0, 0, 0), 1.0)
-);
-
-
-Info<< "Reading diffusivity DT\n" << endl;
-
-dimensionedScalar DT
-(
-    transportProperties.lookup("DT")
-);
-
-#include "createFvOptions.H"
-
-*/
