@@ -25,8 +25,8 @@ Application
     suzenPotential
 
 Description
-    Solves a Laplace equation for the electric potential of the DBD Suzen model,
-	then solves the electric field from y -gradient(electric potential).
+    Laplace equation solver for the electric potential of the DBD Suzen model,
+    and the electric field E=-grad(phi).
 
 \*---------------------------------------------------------------------------*/
 
@@ -52,24 +52,23 @@ int main(int argc, char *argv[])
     Info<< "\nCalculating Electric Potential\n" << endl;
     
     solve ( fvm::laplacian(epsR,ElPot) );
-
+    
     volVectorField Efield
     (
-     	IOobject
-     	(
-			"Efield",
-			runTime.timeName(),
-			mesh,
-			IOobject::NO_READ,
-			IOobject::AUTO_WRITE
+        IOobject
+        (
+            "Efield",
+            runTime.timeName(),
+            mesh,
+            IOobject::NO_READ,
+            IOobject::AUTO_WRITE
         ),
         - fvc::grad(ElPot)
-    );		   
-
+    );         
 
     runTime++;
     ElPot.write();
-	Efield.write();
+    Efield.write();
 
     Info<< "End\n" << endl;
 

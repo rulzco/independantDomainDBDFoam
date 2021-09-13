@@ -1,13 +1,14 @@
+/*
 Info<< "Reading tansportProperties\n" << endl;
 IOdictionary transportProperties
 (
      IOobject
      (
-	"transportProperties",
-	runTime.constant(),
-	mesh,
-	IOobject::MUST_READ_IF_MODIFIED,
-	IOobject::NO_WRITE
+    "transportProperties",
+    runTime.constant(),
+    mesh,
+    IOobject::MUST_READ_IF_MODIFIED,
+    IOobject::NO_WRITE
      )
  );
   
@@ -27,8 +28,8 @@ dimensionedScalar elPotMax
      dimensionSet(0, 0, 0, 0, 0, 0, 0),
      transportProperties.lookup("elPotMax")
 );
-Info << "    elPotMax = " << eps << endl;
-
+Info << "    elPotMax = " << elPotMax << endl;
+*/
 Info<< "Reading field electric potential ElPot\n" << endl;
 volScalarField ElPot
 (
@@ -36,7 +37,7 @@ volScalarField ElPot
     (
         "ElPot",
         runTime.timeName(),
-    	mesh,
+        mesh,
         IOobject::MUST_READ,
         IOobject::AUTO_WRITE
     ),
@@ -49,11 +50,11 @@ volScalarField epsR
 (
      IOobject
      (
-		"epsR",
-		runTime.timeName(),
-		mesh,
-		IOobject::MUST_READ,
-		IOobject::AUTO_WRITE
+        "epsR",
+        runTime.timeName(),
+        mesh,
+        IOobject::MUST_READ,
+        IOobject::AUTO_WRITE
      ),
      mesh
 );
