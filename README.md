@@ -1,5 +1,5 @@
 # dbdSuzenFoam
-OpenFoam implementation of the Suzen-Huang DBD model.
+OpenFoam implementation of the Suzen-Huang DBD model using an independet domain technique.
 
 suzenPotential solves the electric potential, then the computed fields must be mapped to domain for the force and induced flow computations
 
