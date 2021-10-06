@@ -1,4 +1,4 @@
-# dbdSuzenFoam
+# independantDomainDBDFOAM
 OpenFoam implementation of the Suzen-Huang DBD model using an independet domain technique. The technique consist in solving the electricfield in an independent domain and the charge density, force and flow field are computed in another domain, after the elecric field is mappaped from the first domain. Three solvers are provided, one for potential and electric field and two for charge density, force, and flow field. The selection of the second solver depends on whether a stationary or a transient simulation is performed.
 
 * suzenPotential: solves the electric potential, then the computed fields must be mapped to  the domain for the force and induced flow computations.
