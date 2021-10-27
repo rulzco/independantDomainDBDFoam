@@ -33,3 +33,7 @@ The solvers to install must be unzipped and copied into ```$WM_PROJECT_USER_DIR/
 cd suzenPotential
 wmake 
 ```
+
+## Writen work
+
+It is intended to publish an article regarding the implementation of this domain-independent technique to simulate DBD actuators in openfoam.
