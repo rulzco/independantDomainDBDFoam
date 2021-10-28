@@ -1,0 +1,71 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+
+// Field Dictionary
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+    class           volScalarField;
+    object          espR;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+dimensions      [0 0 0 0 0 0 0]; 
+
+internalField   uniform 1.0;
+
+boundaryField
+{
+    electrodes_exposed        
+    {   
+        type            zeroGradient; 
+    }
+
+    electrodes_grounded    
+    {
+        type            zeroGradient;
+    }
+
+    front     
+    {
+        type            empty; 
+    }
+   
+    back 
+    {
+        type            empty;      
+    }
+
+    top
+    {
+        type            zeroGradient; 
+    }
+    
+    bottom
+    {
+        type            zeroGradient; 
+    }
+    
+    inlet
+    {
+        type            zeroGradient; 
+    }
+    
+    outlet
+    {
+        type            zeroGradient; 
+    }
+
+}
+
+
+// ************************************************************************* //

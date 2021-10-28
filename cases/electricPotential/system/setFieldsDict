@@ -1,0 +1,38 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.5                                   |
+|   \\  /    A nd           | Web:      http://www.openfoam.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+    class           dictionary;
+    object          setFieldsDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+defaultFieldValues
+(
+    volScalarFieldValue epsR 1.0  // air
+);
+
+regions
+(
+    boxToCell
+    {
+        box (-1.51E-2 -1.51E-2 -0.01) (1.51E-2  0 0.01);
+
+        fieldValues
+        (
+            volScalarFieldValue epsR 2.7 // dielectric
+        );
+    }
+);
+
+
+// ************************************************************************* //

@@ -1,0 +1,128 @@
+solid wallRhoC
+ facet normal 0 -1 0
+  outer loop
+   vertex 0.5 0 3.26
+   vertex 0.5 0 0
+   vertex 3.67 0 0
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 0.5 0 6.48
+   vertex 0.5 0 3.26
+   vertex 3.38667 0 4.87
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 0.5 0 10
+   vertex 0.5 0 6.48
+   vertex 3.81 0 10
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 10.5 0 0
+   vertex 10.5 0 3.21
+   vertex 7.13 0 0
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 10.5 0 3.21
+   vertex 10.5 0 6.54
+   vertex 7.61333 0 4.875
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 10.5 0 6.54
+   vertex 10.5 0 10
+   vertex 7.2 0 10
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 3.67 0 0
+   vertex 7.13 0 0
+   vertex 5.4 0 3.26794
+  endloop
+ endfacet
+ facet normal -0 -1 0
+  outer loop
+   vertex 7.2 0 10
+   vertex 3.81 0 10
+   vertex 5.505 0 6.9227
+  endloop
+ endfacet
+ facet normal 0 -1 -0
+  outer loop
+   vertex 3.81 0 10
+   vertex 0.5 0 6.48
+   vertex 5.505 0 6.9227
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 10.5 0 6.54
+   vertex 7.2 0 10
+   vertex 5.505 0 6.9227
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 7.13 0 0
+   vertex 10.5 0 3.21
+   vertex 5.4 0 3.26794
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 0.5 0 3.26
+   vertex 3.67 0 0
+   vertex 5.4 0 3.26794
+  endloop
+ endfacet
+ facet normal -0 -1 0
+  outer loop
+   vertex 10.5 0 6.54
+   vertex 5.505 0 6.9227
+   vertex 7.61333 0 4.875
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 0.5 0 6.48
+   vertex 3.38667 0 4.87
+   vertex 5.505 0 6.9227
+  endloop
+ endfacet
+ facet normal -0 -1 0
+  outer loop
+   vertex 7.61333 0 4.875
+   vertex 5.505 0 6.9227
+   vertex 3.38667 0 4.87
+  endloop
+ endfacet
+ facet normal 0 -1 -0
+  outer loop
+   vertex 3.38667 0 4.87
+   vertex 0.5 0 3.26
+   vertex 5.4 0 3.26794
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 3.38667 0 4.87
+   vertex 5.4 0 3.26794
+   vertex 7.61333 0 4.875
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 5.4 0 3.26794
+   vertex 10.5 0 3.21
+   vertex 7.61333 0 4.875
+  endloop
+ endfacet
+endsolid wallRhoC

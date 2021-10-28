@@ -1,0 +1,114 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1;
+
+//te        1.02e-4; // thickness of electrodes m  
+//le        0.01; // electrodes length m
+//ye        1.274e-4; // depth of emebded electrode m
+//xe        5e-4; // distance between electrodes m
+xmin    -1.5e-2; 
+xmax    2.0e-1;
+ymin    0.0e-2; 
+ymax    0.5e-1;
+zmin    0;
+zmax    0.005;
+
+
+vertices
+(
+    ($xmin $ymin $zmin)//0
+    ($xmax $ymin $zmin)//1
+    ($xmax $ymax $zmin)//2
+    ($xmin $ymax $zmin)//3
+    ($xmin $ymin $zmax)//4
+    ($xmax $ymin $zmax)//5
+    ($xmax $ymax $zmax)//6
+    ($xmin $ymax $zmax)//7
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (200 100 5) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    top
+    {
+        type patch;
+        faces
+        (
+            (3 7 6 2)      
+        );
+    }
+    
+    bottom
+    {
+        type wall;
+        faces
+        (
+            (1 5 4 0)
+        );
+    }
+
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+
+    front
+    {
+        type empty;
+        faces
+        (
+            (4 5 6 7)
+        );
+    }
+
+    back
+    {
+        type empty;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //
