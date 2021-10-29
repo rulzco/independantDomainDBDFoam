@@ -14,7 +14,7 @@ application="$(getApplication)"
 
 # Clean run time folders
 foamListTimes -rm
-rm log.suzenSimple
+rm log.suzenPimple
 rm -rf postProcessing
 
 # Mapping fields
