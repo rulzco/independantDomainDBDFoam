@@ -39,8 +39,8 @@ cellsGap 10;             // Cells along the gap in the x-axis
 cellsLHS 6;            // Cells in LHS block in the x-axis
 cellsRHS 50;            // Cells in RHS block in the x-axis
 
-expRatioG 10.2188;             // Expansion ratio of exposed electrode
-expRatioE 0.09785;             // Expansion ratio of grounded electrode
+expRatioG 10.2188;             // Expansion ratio of grounded electrode
+expRatioE 0.09785;             // Expansion ratio of exposed electrode
 expRatioRHS 8.4045;                // Expansion ratio of the right side of the domain in the x-axis
 expRatioLHS 0.4117;             // Expansion ratio of the left side of the domain in the x-axis   
 
