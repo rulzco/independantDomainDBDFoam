@@ -30,12 +30,6 @@ boundaryField
         type            zeroGradient; 
     }
     
-    solidWall      
-    {   
-        type            fixedValue;
-        value           uniform 2.7; 
-    }
-    
     wallRhoC      
     {   
         type            fixedValue;
@@ -60,7 +54,8 @@ boundaryField
     
     bottom
     {
-        type            zeroGradient; 
+        type            fixedValue;
+        value           uniform 2.7;  
     }
     
     inlet

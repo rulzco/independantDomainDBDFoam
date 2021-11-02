@@ -15,35 +15,272 @@ FoamFile
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-convertToMeters 1;
+convertToMeters 1.0;
 
-//te        1.02e-4; // thickness of electrodes m  
-//le        0.01; // electrodes length m
-//ye        1.274e-4; // depth of emebded electrode m
-//xe        5e-4; // distance between electrodes m
-xmin    -1.5e-2; 
-xmax    2.0e-1;
-ymin    0.0e-2; 
-ymax    0.5e-1;
-zmin    0;
-zmax    0.005;
+// Geometric parameters
+
+x_min -0.015;   // Domain length in x-axis min
+x_max 0.1;    // Domain length in x-axis max
+y_min 0.0;    // Domain length in y-axis min
+y_max 0.05;    // Domain length in y-axis min
+
+L_expE 0.01;            // Length of exposed electrode
+t_expE 1.02e-4;         // Thickness of exposed electrode 
+L_grdE 0.01;            // Length of grounded electrode
+t_grdE 1.02e-4;         // Thickness of grounded electrode
+t_Diel 1.274e-4;        // Dielectric between electrodes thickness
+L_Gap 5.0e-4;           // Gap between electrodes 
+
+// Grid managment in x-direction
+
+cellsExpE 50;           // Cells over exposed electrode in the x-axis
+cellsGrdE 50;           // Cell along the grounded electrode in the x-axis  
+cellsGap 10;             // Cells along the gap in the x-axis    
+cellsLHS 6;            // Cells in LHS block in the x-axis
+cellsRHS 50;            // Cells in RHS block in the x-axis
+
+expRatioG 10.2188;             // Expansion ratio of exposed electrode
+expRatioE 0.09785;             // Expansion ratio of grounded electrode
+expRatioRHS 8.4045;                // Expansion ratio of the right side of the domain in the x-axis
+expRatioLHS 0.4117;             // Expansion ratio of the left side of the domain in the x-axis   
+
+// Grid managment in y-direction
+
+cellsThcElec 4;            // Cells in the blocks of the exposed electrode thickness in the y-axis
+cellsWallTop 100;            // Cells from the thickness of the exposed electrode up to the top boundary in the y-axis
+cellsThcDiel 4;            // Cells in the blocks of the dielectric thickness in the y-axis
+cellsThcGrd 4;            // Cells in the blocks of the grounded electrode thickness in the y-axis
+cellsGrdBot 50;            // Cells from the thickness of the grounded electrode up to the bottom boundary in the y-axis    
+
+expRatioyu 44.4620;                // Expansion ratio of the upper side of the domain in the y-axis
+expRatioyl 0.0227;                // Expansion ratio of the down side of the domain in the y-axis
+
+// Grid managment in z-direction
+z_start 0.00;
+z_end 0.05;                   // Depth in z-axis
+
+// cellToCellRatio 1.2;
+
+// Vertices assign
+
+X0 0.0;
+Y0 0.0;
+X1 $L_Gap;
+Y1 0.0;
+X2 #calc "$L_grdE+$L_Gap";    
+Y2 0.0;
+X3 $x_max;
+Y3 0.0;
+X4 $x_max;
+Y4 $t_expE;
+X5 $x_max;
+Y5 $y_max;
+X6 #calc "$L_grdE+$L_Gap"; 
+Y6 $y_max;
+X7 #calc "$L_grdE+$L_Gap";
+Y7 $t_expE;
+X8 $L_Gap;
+Y8 $t_expE;
+X9 $L_Gap;
+Y9 $y_max;
+X10 0.0;
+Y10 $y_max;
+X11 0.0;
+Y11 $t_expE;
+X12 #calc "-1*$L_expE";
+Y12 $t_expE;
+X13 #calc "-1*$L_expE";
+Y13 $y_max;
+X14 $x_min;
+Y14 $y_max;
+X15 $x_min;    
+Y15 $t_expE;
+X16 $x_min;
+Y16 0.0;
+X17 #calc "-1*$L_expE";
+Y17 0.0;
+
+X18 $x_min;
+Y18 #calc "-1*$t_Diel";
+X19 #calc "-1*$L_expE";
+Y19 #calc "-1*$t_Diel";
+X20 0.0;
+Y20 #calc "-1*$t_Diel";
+X21 $L_Gap;
+Y21 #calc "-1*$t_Diel";
+X22 #calc "$L_grdE+$L_Gap";
+Y22 #calc "-1*$t_Diel";
+X23 $x_max;
+Y23 #calc "-1*$t_Diel";
+
+X24 $x_max;
+Y24 #calc "-1*($t_Diel+$t_grdE)";
+X25 #calc "$L_grdE+$L_Gap";
+Y25 #calc "-1*($t_Diel+$t_grdE)";
+X26 $L_Gap;
+Y26 #calc "-1*($t_Diel+$t_grdE)";
+X27 0.0;
+Y27 #calc "-1*($t_Diel+$t_grdE)";
+X28 #calc "-1*$L_expE";
+Y28 #calc "-1*($t_Diel+$t_grdE)";
+X29 $x_min;
+Y29 #calc "-1*($t_Diel+$t_grdE)";
+
+X30 $x_min;
+Y30 $y_min;
+X31 #calc "-1*$L_expE";
+Y31 $y_min;
+X32 0.0;
+Y32 $y_min;
+X33 $L_Gap;
+Y33 $y_min;
+X34 #calc "$L_grdE+$L_Gap";
+Y34 $y_min;
+X35 $x_max;
+Y35 $y_min;
 
 
 vertices
 (
-    ($xmin $ymin $zmin)//0
-    ($xmax $ymin $zmin)//1
-    ($xmax $ymax $zmin)//2
-    ($xmin $ymax $zmin)//3
-    ($xmin $ymin $zmax)//4
-    ($xmax $ymin $zmax)//5
-    ($xmax $ymax $zmax)//6
-    ($xmin $ymax $zmax)//7
+    ($X0 $Y0 $z_start)              // 0
+    ($X1 $Y1 $z_start)              // 1
+    ($X2 $Y2 $z_start)              // 2
+    ($X3 $Y3 $z_start)              // 3
+    ($X4 $Y4 $z_start)              // 4
+    ($X5 $Y5 $z_start)              // 5
+
+    ($X6 $Y6 $z_start)              // 6
+    ($X7 $Y7 $z_start)              // 7
+    ($X8 $Y8 $z_start)              // 8
+    ($X9 $Y9 $z_start)              // 9
+    ($X10 $Y10 $z_start)            // 10
+    ($X11 $Y11 $z_start)            // 11
+
+    ($X12 $Y12 $z_start)            // 12
+    ($X13 $Y13 $z_start)            // 13
+    ($X14 $Y14 $z_start)            // 14 
+    ($X15 $Y15 $z_start)            // 15
+    ($X16 $Y16 $z_start)            // 16
+    ($X17 $Y17 $z_start)            // 17
+    
+    ($X18 $Y18 $z_start)            // 18
+    ($X19 $Y18 $z_start)            // 19
+    ($X20 $Y20 $z_start)            // 20
+    ($X21 $Y21 $z_start)            // 21
+    ($X22 $Y22 $z_start)            // 22
+    ($X23 $Y23 $z_start)            // 23
+    
+    ($X24 $Y24 $z_start)            // 24
+    ($X25 $Y25 $z_start)            // 25
+    ($X26 $Y26 $z_start)            // 26
+    ($X27 $Y27 $z_start)            // 27
+    ($X28 $Y28 $z_start)            // 28
+    ($X29 $Y29 $z_start)            // 29
+    
+    ($X30 $Y30 $z_start)            // 30
+    ($X31 $Y31 $z_start)            // 31
+    ($X32 $Y32 $z_start)            // 32
+    ($X33 $Y33 $z_start)            // 33
+    ($X34 $Y34 $z_start)            // 34
+    ($X35 $Y35 $z_start)            // 35
+  
+  
+    ($X0 $Y0 $z_end)              // 36
+    ($X1 $Y1 $z_end)              // 37
+    ($X2 $Y2 $z_end)              // 38
+    ($X3 $Y3 $z_end)              // 39
+    ($X4 $Y4 $z_end)              // 40
+    ($X5 $Y5 $z_end)              // 41
+
+    ($X6 $Y6 $z_end)              // 42
+    ($X7 $Y7 $z_end)              // 42
+    ($X8 $Y8 $z_end)              // 44
+    ($X9 $Y9 $z_end)              // 45
+    ($X10 $Y10 $z_end)            // 46
+    ($X11 $Y11 $z_end)            // 47
+
+    ($X12 $Y12 $z_end)            // 48
+    ($X13 $Y13 $z_end)            // 49
+    ($X14 $Y14 $z_end)            // 50 
+    ($X15 $Y15 $z_end)            // 51
+    ($X16 $Y16 $z_end)            // 52
+    ($X17 $Y17 $z_end)            // 53
+    
+    ($X18 $Y18 $z_end)            // 54
+    ($X19 $Y18 $z_end)            // 55
+    ($X20 $Y20 $z_end)            // 56
+    ($X21 $Y21 $z_end)            // 57
+    ($X22 $Y22 $z_end)            // 58
+    ($X23 $Y23 $z_end)            // 59
+    
+    ($X24 $Y24 $z_end)            // 60
+    ($X25 $Y25 $z_end)            // 61
+    ($X26 $Y26 $z_end)            // 62
+    ($X27 $Y27 $z_end)            // 63
+    ($X28 $Y28 $z_end)            // 64
+    ($X29 $Y29 $z_end)            // 65
+    
+    ($X30 $Y30 $z_end)            // 66
+    ($X31 $Y31 $z_end)            // 67
+    ($X32 $Y32 $z_end)            // 68
+    ($X33 $Y33 $z_end)            // 69
+    ($X34 $Y34 $z_end)            // 70
+    ($X35 $Y35 $z_end)            // 71
 );
+
 
 blocks
 (
-    hex (0 1 2 3 4 5 6 7) (200 100 5) simpleGrading (1 1 1)
+    hex (0 1 8 11 36 37 44 47) ($cellsGap $cellsThcElec 1) simpleGrading (1 1 1)                       // Block 0
+    
+    hex (1 2 7 8 37 38 43 44) ($cellsGrdE $cellsThcElec 1) simpleGrading ($expRatioG 1 1)             // Block 1
+   
+    hex (2 3 4 7 38 39 40 43) ($cellsRHS $cellsThcElec 1) simpleGrading ($expRatioRHS 1 1)    // Block 2
+
+
+    hex (7 4 5 6 43 40 41 42) ($cellsRHS $cellsWallTop 1) simpleGrading ($expRatioRHS $expRatioyu 1)    // Block 3
+    
+    hex (8 7 6 9 44 43 42 45) ($cellsGrdE $cellsWallTop 1) simpleGrading ($expRatioG $expRatioyu 1)     // Block 4
+    
+    hex (11 8 9 10 47 44 45 46) ($cellsGap $cellsWallTop 1) simpleGrading (1 $expRatioyu 1)    // Block 5     
+
+    hex (12 11 10 13 48 47 46 49) ($cellsExpE $cellsWallTop 1) simpleGrading ($expRatioE $expRatioyu 1)      // Block 6
+    
+    hex (15 12 13 14 51 48 49 50) ($cellsLHS $cellsWallTop 1) simpleGrading ($expRatioLHS $expRatioyu 1)    // Block 7 
+    
+
+    hex (16 17 12 15 52 53 48 51) ($cellsLHS $cellsThcElec 1) simpleGrading ($expRatioLHS 1 1)    // Block 8
+    
+    // hex (18 19 17 16 54 55 53 52) ($cellsLHS $cellsThcDiel 1) simpleGrading ($expRatioLHS 1 1)    // Block 9
+
+    // hex (19 20 0 17 55 56 36 53) ($cellsExpE $cellsThcDiel 1) simpleGrading ($expRatioE 1 1)    // Block 10
+
+    // hex (20 21 1 0 56 57 37 36) ($cellsGap $cellsThcDiel 1) simpleGrading (1 1 1)    // Block 11
+
+    // hex (21 22 2 1 57 58 38 37) ($cellsGrdE $cellsThcDiel 1) simpleGrading ($expRatioG 1 1)    // Block 12
+
+    // hex (22 23 3 2 58 59 39 38) ($cellsRHS $cellsThcDiel 1) simpleGrading ($expRatioRHS 1 1)    // Block 13
+    
+    
+    // hex (25 24 23 22 61 60 59 58) ($cellsRHS $cellsThcGrd 1) simpleGrading ($expRatioRHS 1 1)    // Block 14
+    
+    // hex (27 26 21 20 63 62 57 56) ($cellsGap $cellsThcGrd 1) simpleGrading (1 1 1)    // Block 15
+    
+    // hex (28 27 20 19 64 63 56 55) ($cellsExpE $cellsThcGrd 1) simpleGrading ($expRatioE 1 1)    // Block 16
+    
+    // hex (29 28 19 18 65 64 55 54) ($cellsLHS $cellsThcGrd 1) simpleGrading ($expRatioLHS 1 1)    // Block 17
+    
+    
+    
+    // hex (30 31 28 29 66 67 64 65) ($cellsLHS $cellsGrdBot 1) simpleGrading ($expRatioLHS $expRatioyl 1)    // Block 18
+    
+    // hex (31 32 27 28 67 68 63 64) ($cellsExpE $cellsGrdBot 1) simpleGrading ($expRatioE $expRatioyl 1)    // Block 19
+    
+    // hex (32 33 26 27 68 69 62 63) ($cellsGap $cellsGrdBot 1) simpleGrading (1 $expRatioyl 1)    // Block 20
+    
+    // hex (33 34 25 26 69 70 61 62) ($cellsGrdE $cellsGrdBot 1) simpleGrading ($expRatioG $expRatioyl 1)    // Block 21
+    
+    // hex (34 35 24 25 70 71 60 61) ($cellsRHS $cellsGrdBot 1) simpleGrading ($expRatioRHS $expRatioyl 1)    // Block 22
 );
 
 edges
@@ -57,7 +294,11 @@ boundary
         type patch;
         faces
         (
-            (3 7 6 2)      
+            (14 50 49 13)   // From Block 7
+            (13 49 46 10)   // From Block 6
+            (10 46 45 9)   // From Block 5
+            (9 45 42 6)   // From Block 4
+            (6 42 41 5)   // From Block 3
         );
     }
     
@@ -65,8 +306,25 @@ boundary
     {
         type wall;
         faces
-        (
-            (1 5 4 0)
+        (   
+            (16 52 53 17) // From Block 8
+            (0 36 37 1)   // From Block 0
+            // (1 37 38 2)   // From Block 1
+            (2 38 39 3)   // From Block 2
+            // (30 66 67 31)   // From Block 18
+            // (31 67 68 32)   // From Block 19
+            // (32 68 69 33)   // From Block 20
+            // (33 69 70 34)   // From Block 21
+            // (34 70 71 35)   // From Block 22
+        );
+    }
+    
+    wallRhoC
+    {
+        type wall;
+        faces
+        (   
+            (1 37 38 2)   // From Block 1
         );
     }
 
@@ -75,7 +333,11 @@ boundary
         type patch;
         faces
         (
-            (0 4 7 3)
+            (15 51 50 14)    // from Block 7
+            (16 52 51 15)    // From Block 8
+            // (18 54 52 16)    // from Block 9
+            // (29 65 54 18)    // From Block 17
+            // (30 66 65 29)    // from Block 18
         );
     }
 
@@ -84,25 +346,101 @@ boundary
         type patch;
         faces
         (
-            (2 6 5 1)
+            (4 40 41 5)    // From Block 3
+            (3 39 40 4)    // From Block 2
+            // (23 59 39 3)    // From Block 13
+            // (60 24 23 59)    // From Block 14
+            // (35 71 60 24)    // From Block 22
         );
     }
+
+    exposed
+    {
+        type wall;
+        faces
+        (
+            (0 36 47 11)     // From Block 0
+            (12 48 47 11)     // From Block 6
+            (17 53 48 12)     // From Block 8
+            // (17 53 36 0)     // From Block 10
+        );
+    }
+
+    // electrodes_grounded
+    // {
+        // type wall;
+        // faces
+        // (
+            // (25 61 58 22)   // From Block 14
+            // (21 57 58 22)   // From Block 12
+            // (26 62 57 21)   // From Block 15
+            // (26 62 61 25)   // From Block 21
+        // );
+    // }
+
 
     front
     {
         type empty;
         faces
         (
-            (4 5 6 7)
+            // Front
+            (0 1 8 11)   // From Block 0
+            (1 2 7 8)    // From Block 1
+            (2 3 4 7)    // From Block 2
+            (7 4 5 6)   // From Block 3
+            (8 7 6 9)   // From Block 4
+            (11 8 9 10)    // From Block 5
+            (12 11 10 13)  // From Block 6
+            (15 12 13 14)   // From Block 7
+            (16 17 12 15)    // From Block 8
+            // (18 19 17 16)    // From Block 9
+            // (19 20 0 17)   // From Block 10
+            // (20 21 1 0)   // From Block 11
+            // (21 22 2 1)    // From Block 12
+            // (22 23 3 2)  // From Block 13
+            // (25 24 23 22)  // From Block 14
+            // (27 26 21 20)  // From Block 15
+            // (28 27 20 19)  // From Block 16
+            // (29 28 19 18)  // From Block 17
+            // (30 31 28 29)  // From Block 18
+            // (31 32 27 28)  // From Block 19
+            // (32 33 26 27)  // From Block 20
+            // (33 34 25 26)  // From Block 21
+            // (34 35 24 25)  // From Block 22
+            
         );
     }
-
+    
     back
     {
         type empty;
         faces
         (
-            (0 3 2 1)
+            // Back
+            (36 37 44 47)   // From Block 0
+            (37 38 43 44)    // From Block 1
+            (38 39 40 43)    // From Block 2
+            (43 40 41 42)   // From Block 3
+            (44 43 42 45)   // From Block 4
+            (47 44 45 46)    // From Block 5
+            (48 47 46 49)  // From Block 6
+            (51 48 49 50)   // From Block 7
+            (52 53 48 51)    // From Block 8
+            // (54 55 53 52)    // From Block 9
+            // (55 56 36 53)   // From Block 10
+            // (56 57 37 36)   // From Block 11
+            // (57 58 38 37)    // From Block 12
+            // (58 59 39 38)  // From Block 13
+            // (61 60 59 58)  // From Block 14
+            // (63 62 57 56)  // From Block 15
+            // (64 63 56 55)  // From Block 16
+            // (65 64 55 54)  // From Block 17
+            // (66 67 64 65)  // From Block 18
+            // (67 68 63 64)  // From Block 19
+            // (68 69 62 63)  // From Block 20
+            // (69 70 61 62)  // From Block 21
+            // (70 71 60 61)  // From Block 22
         );
     }
 );

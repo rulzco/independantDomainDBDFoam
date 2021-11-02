@@ -26,11 +26,6 @@ boundaryField
 		type            nutkWallFunction;
         value           uniform 0;
 	}
-	solidWall      
-    {   
-		type            nutkWallFunction;
-        value           uniform 0;
-    }
 	
 	wallRhoC      
     {   

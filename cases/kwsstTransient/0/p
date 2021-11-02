@@ -24,10 +24,6 @@ boundaryField
     {    
         type            zeroGradient;
     }
-    solidWall      
-    {   
-        type            zeroGradient;
-    }
     
     wallRhoC      
     {   

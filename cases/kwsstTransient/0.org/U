@@ -24,10 +24,6 @@ boundaryField
     {    
         type            noSlip;
     }
-    solidWall      
-    {   
-        type            noSlip;
-    }
     
     wallRhoC      
     {   
