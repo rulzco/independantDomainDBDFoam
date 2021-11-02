@@ -18,7 +18,7 @@ rm log.suzenSimple
 rm -rf postProcessing
 
 # Mapping fields
-cp -r 0.org 0
+cp -a 0.org/. 0/
 mapFields -sourceTime latestTime ../electricPotential
 
 touch flowfield.foam

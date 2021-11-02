@@ -6,9 +6,10 @@ cd ${0%/*} || exit 1    # Run from this directory
 
 # Meshing
 runApplication blockMesh
-runApplication surfaceFeatures
-runApplication snappyHexMesh -overwrite
-extrudeMesh
+# runApplication surfaceFeatures
+# runApplication snappyHexMesh -overwrite
+# extrudeMesh
+touch flowfield.foam
 
 # Output message
 echo Mesh created
