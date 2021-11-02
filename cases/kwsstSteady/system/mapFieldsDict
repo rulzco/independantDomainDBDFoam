@@ -17,16 +17,16 @@ FoamFile
  patchMap        
 (   
     inlet inlet
-    top top
+    // top top
     front front
     back back
-    outlet outlet
+    // outlet outlet
+    exposed exposed
 );
 
 cuttingPatches  
 (
-    solidWall
-    wallRhoC
-    exposed
     bottom
+    wallRhoC
+    // exposed
 );

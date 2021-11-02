@@ -25,13 +25,13 @@ internalField   uniform 0;
 
 boundaryField
 {
-    electrodes_exposed        
+    exposed        
     {    
         type            fixedValue;
         value           uniform 1; 
     }
 
-    electrodes_grounded      
+    grounded      
     {
         type            fixedValue;
         value           uniform  0;  

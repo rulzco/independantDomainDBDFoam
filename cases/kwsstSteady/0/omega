@@ -26,11 +26,6 @@ boundaryField
 		type            omegaWallFunction;
         value           $internalField;
 	}
-	solidWall      
-    {   
-		type            omegaWallFunction;
-        value           $internalField;
-    }
 	
 	wallRhoC      
     {   

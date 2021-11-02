@@ -35,11 +35,6 @@ boundaryField
         type            kqRWallFunction;
         value           uniform 0.00045;
     }
-    solidWall      
-    {   
-        type            kqRWallFunction;
-        value           uniform 0.00045;
-    }
     
     wallRhoC      
     {   
