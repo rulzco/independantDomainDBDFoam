@@ -1,0 +1,128 @@
+solid wallRhoC
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 10.000000 0.000000 0.000000
+      vertex 10.000000 0.000000 3.180000
+      vertex 6.810000 0.000000 0.000000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 10.000000 0.000000 3.180000
+      vertex 10.000000 0.000000 6.810000
+      vertex 6.350786 0.000000 4.995000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 10.000000 0.000000 6.810000
+      vertex 10.000000 0.000000 10.000000
+      vertex 6.810000 0.000000 10.000000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 0.000000 0.000000 3.170000
+      vertex 0.000000 0.000000 0.000000
+      vertex 3.330000 0.000000 0.000000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 0.000000 0.000000 6.640000
+      vertex 0.000000 0.000000 3.170000
+      vertex 3.267940 0.000000 4.905000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 0.000000 0.000000 10.000000
+      vertex 0.000000 0.000000 6.640000
+      vertex 3.330000 0.000000 10.000000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 3.330000 0.000000 0.000000
+      vertex 6.810000 0.000000 0.000000
+      vertex 5.070000 0.000000 3.267940
+    endloop
+  endfacet
+  facet normal -0.000000 -1.000000 0.000000
+    outer loop
+      vertex 6.810000 0.000000 10.000000
+      vertex 3.330000 0.000000 10.000000
+      vertex 5.070000 0.000000 6.732059
+    endloop
+  endfacet
+  facet normal -0.000000 -1.000000 0.000000
+    outer loop
+      vertex 10.000000 0.000000 6.810000
+      vertex 6.810000 0.000000 10.000000
+      vertex 6.350786 0.000000 4.995000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 -0.000000
+    outer loop
+      vertex 3.330000 0.000000 10.000000
+      vertex 0.000000 0.000000 6.640000
+      vertex 5.070000 0.000000 6.732059
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 0.000000 0.000000 3.170000
+      vertex 3.330000 0.000000 0.000000
+      vertex 3.267940 0.000000 4.905000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 6.810000 0.000000 0.000000
+      vertex 10.000000 0.000000 3.180000
+      vertex 6.350786 0.000000 4.995000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 5.070000 0.000000 6.732059
+      vertex 0.000000 0.000000 6.640000
+      vertex 3.267940 0.000000 4.905000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 3.267940 0.000000 4.905000
+      vertex 3.330000 0.000000 0.000000
+      vertex 5.070000 0.000000 3.267940
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 -0.000000
+    outer loop
+      vertex 5.070000 0.000000 6.732059
+      vertex 3.267940 0.000000 4.905000
+      vertex 5.070000 0.000000 3.267940
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 6.810000 0.000000 0.000000
+      vertex 6.350786 0.000000 4.995000
+      vertex 5.070000 0.000000 3.267940
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex 6.810000 0.000000 10.000000
+      vertex 5.070000 0.000000 6.732059
+      vertex 6.350786 0.000000 4.995000
+    endloop
+  endfacet
+  facet normal -0.000000 -1.000000 0.000000
+    outer loop
+      vertex 6.350786 0.000000 4.995000
+      vertex 5.070000 0.000000 6.732059
+      vertex 5.070000 0.000000 3.267940
+    endloop
+  endfacet
+endsolid Mesh
