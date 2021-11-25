@@ -26,9 +26,17 @@ dir_list = os.listdir(mainRoute) # get list of directories inside case path
 
 times = []
 for i in range(len(dir_list)):
-    if(dir_list[i].isdigit()):
-        times.append(dir_list[i]) # get time directories
-timename = max(times) # get latest time       
+    if(dir_list[i].isdigit()): 
+         times.append(dir_list[i]) # get time directories
+    else:
+        try:
+            float(dir_list[i])
+            times.append(dir_list[i])
+        except:
+            print("Not a float or int")
+   # if(dir_list[i].isdigit()): 
+   #      times.append(dir_list[i]) # get time directories
+timename = max(times) # get latest time           
 
 # import readvector and readscalar functions from fluidfoam package
 from fluidfoam import readvector, readscalar, readfield
