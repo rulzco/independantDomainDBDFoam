@@ -184,7 +184,8 @@ plt.savefig('C:/Users/rzc/Desktop/'+case+'ElPot.png')
 # force field plot
 fig, ax = plt.subplots(1, figsize=(8, 6), dpi=90, facecolor='w', edgecolor='w') 
 cs = ax.contourf(xi2,yi2,bForce,30,cmap=cm[2])
-# ax.streamplot(xi2,yi2,velx_i,vely_i,color='k',linewidth=0.5)   
+# ax.streamplot(xi2,yi2,velx_i,vely_i,color='k',
+#               linewidth=0.5,density=[0.8, 1])   # stream lines
 plt.plot([xinterpmin2,xinterpmax2],[0,0],'-',color='k') 
 # ax.contour(X, Y, F, 10, colors = "grey")
 rect1 = matplotlib.patches.Rectangle((-le, 0), 
@@ -209,35 +210,46 @@ plt.savefig('C:/Users/rzc/Desktop/'+case+'force.png')
 # Single figure for velcoity and force
 
 # fig, (ax1, ax2) = plt.subplots(2, 1,figsize=(8, 6), dpi=90)
-# im = ax1.contourf(xi,yi,vel_i,100,cmap='jet')
+# im = ax1.contourf(xi,yi,vel_i,100,cmap='jet') # cotourf plot
 # ax1.title.set_text('Velocity field')
-# ax1.set_xlabel('x (m)')
+# ax1.set_xlabel('x (m)') 
 # ax1.set_ylabel('y (m)')
-# cbar = fig.colorbar(im, ax=ax1)
-# tick_locator = ticker.MaxNLocator(nbins=5)
-# cbar.locator = tick_locator
-# cbar.update_ticks()
+# rect1 = matplotlib.patches.Rectangle((-le, 0),
+                                     # le, te, color ='black') # electrode 1
+# rect2 = matplotlib.patches.Rectangle((xe, -(ye+te)),(xe+le), te,
+                                     # color ='black') # electrode 2
+# ax1.add_patch( rect1 ) 
+# ax1.add_patch( rect2 )
+# cbar = fig.colorbar(im, ax=ax1) # color bar
+# tick_locator = ticker.MaxNLocator(nbins=5) # cb number of ticks
+# cbar.locator = tick_locator 
+# cbar.update_ticks() 
 # cbar.set_label('m/s')
 
-# im2 = ax2.contourf(xi2,yi2,bForce,100,cmap='jet')
-# plt.plot([xinterpmin2,xinterpmax2],[0,0],'-',color='k')
+# im2 = ax2.contourf(xi2,yi2,bForce,100,cmap='rainbow') # cotourf plot
+# ax2.streamplot(xi2,yi2,velx_i,vely_i,color='k',
+               # linewidth=0.6,density=[0.8, 1]) # stream lines 
+# plt.plot([xinterpmin2,xinterpmax2],[0,0],'-',color='k') # black line
 # ax2.title.set_text('Body Force')
 # ax2.set_xlabel('x (m)')
 # ax2.set_ylabel('y (m)') 
-# rect1 = matplotlib.patches.Rectangle((-le, 0), le, te, color ='black')
-# rect2 = matplotlib.patches.Rectangle((xe, -(ye+te)), (xe+le), te, color ='black')  
+# rect1 = matplotlib.patches.Rectangle((-le, 0),
+                                     # le, te, color ='black') # electrode 1
+# rect2 = matplotlib.patches.Rectangle((xe, -(ye+te)),(xe+le), te,
+                                     # color ='black') # electrode 2  
 # ax2.add_patch( rect1 ) 
 # ax2.add_patch( rect2 )
 # ax2.set_xlim([-0.0005, 0.0018])
 # ax2.set_ylim([-0.0005, 0.001])
-# ax2.ticklabel_format(axis="x", style="sci", scilimits=(0,0))
+# ax2.ticklabel_format(axis="x", style="sci", scilimits=(0,0)) # sci notation
 # cbar2 = fig.colorbar(im2, ax=ax2)
-# tick_locator = ticker.MaxNLocator(nbins=7)
+# tick_locator = ticker.MaxNLocator(nbins=7) # cb number of ticks
 # cbar2.locator = tick_locator
 # cbar2.update_ticks()
 # cbar2.set_label('$F_b}$ $[N/m^3]$')
 # fig.tight_layout()
-# plt.savefig(sol+'/'+case+'.png')
+# # plt.savefig(sol+'/'+case+'.png')
+# plt.savefig('C:/Users/rzc/Desktop/'+case+'fields.png')
 plt.show() 
 
 
