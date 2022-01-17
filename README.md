@@ -37,3 +37,9 @@ wmake
 ## Writen work
 
 It is intended to publish an article regarding the implementation of this domain-independent technique to simulate DBD actuators in openfoam.
+
+
+## Cite this coe
+[![DOI](https://zenodo.org/badge/358095687.svg)](https://zenodo.org/badge/latestdoi/358095687)
+
+
